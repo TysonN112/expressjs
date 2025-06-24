@@ -3,17 +3,25 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "prisma-generate": "prisma generate",
+    "prisma-generate-legacy": "prisma generate --schema legacy/schema.prisma",
+    "prisma-migration-only": "prisma migrate dev --create-only",
+    "prisma-deploy": "prisma migrate deploy"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.10.1",
+    "@prisma/extension-accelerate": "^2.0.1",
     "express": "^5.1.0",
     "zod": "^3.25.67"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "prisma": "^6.10.1",
+    "ts-node": "^10.9.2"
   }
 }
