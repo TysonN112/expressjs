@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  password     String
+  name         String?
+  calculations Calculation[]
+  updatedAt    DateTime      @updatedAt
+  createdAt    DateTime      @default(now())
+}
+
+model Calculation {
+  id        String          @id @default(cuid())
+  type      CalculationType
+  inputs    Json // Flexible storage for different input types
+  result    Float
+  userId    String?
+  user      User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime        @default(now())
+
+  @@index([userId]) // Fast user-specific queries
+  @@index([type]) // Fast filtering by calculation type
+  @@index([createdAt]) // Fast chronological sorting
+}
+
+enum CalculationType {
+  SUM
+  AVERAGE
+  // Future: MULTIPLY, DIVIDE, etc.
+}
