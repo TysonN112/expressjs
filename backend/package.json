@@ -7,21 +7,27 @@
     "prisma-generate": "prisma generate",
     "prisma-generate-legacy": "prisma generate --schema legacy/schema.prisma",
     "prisma-migration-only": "prisma migrate dev --create-only",
-    "prisma-deploy": "prisma migrate deploy"
+    "prisma-deploy": "prisma migrate deploy",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@prisma/client": "^6.10.1",
+    "@prisma/client": "^6.11.0",
     "@prisma/extension-accelerate": "^2.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.0",
     "express": "^5.1.0",
     "zod": "^3.25.67"
   },
   "devDependencies": {
     "nodemon": "^3.1.10",
-    "prisma": "^6.10.1",
+    "prisma": "^6.11.0",
     "ts-node": "^10.9.2"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "description": ""
 }
